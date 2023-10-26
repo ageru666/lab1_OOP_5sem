@@ -1,4 +1,6 @@
-class Coffee {
+package src.main;
+
+public class Coffee {
     private String name;
     private double weight;
     private double price;

@@ -1,8 +1,11 @@
-import java.util.Scanner;
+package src.main;
 
-// Клас, який представляє каву в пакетиках
-class PacketCoffee extends Coffee {
+import java.util.Scanner;
+import java.util.logging.Logger;
+
+public class PacketCoffee extends Coffee {
     private int packetsCount;
+    private static final Logger logger = Logger.getLogger(PacketCoffee.class.getName());
 
     public PacketCoffee(String name, double weight, double price, int packetsCount) {
         super(name, weight, price);
@@ -20,16 +23,16 @@ class PacketCoffee extends Coffee {
 
     public static void addPacketCoffee(CoffeeVan coffeeVan) {
         Scanner coffeeScanner = new Scanner(System.in);
-        System.out.print("Введіть назву кави: ");
+        logger.info("Введіть назву кави: ");
         String coffeeName = coffeeScanner.nextLine();
 
-        System.out.print("Введіть вагу кави в грамах: ");
+        logger.info("Введіть вагу кави в грамах: ");
         double coffeeWeight = coffeeScanner.nextDouble();
 
-        System.out.print("Введіть ціну кави: ");
+        logger.info("Введіть ціну кави: ");
         double coffeePrice = coffeeScanner.nextDouble();
 
-        System.out.print("Введіть кількість пакетиків: ");
+        logger.info("Введіть кількість пакетиків: ");
         int packetsCount = coffeeScanner.nextInt();
         coffeeVan.addCoffee(new PacketCoffee(coffeeName, coffeeWeight, coffeePrice, packetsCount));
     }

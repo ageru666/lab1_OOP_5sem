@@ -1,11 +1,15 @@
+package src.main;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Logger;
 
-class CoffeeVan {
+public class CoffeeVan {
     private double maxWeight;
     private double maxPrice;
     private List<Coffee> coffeeList = new ArrayList<>();
+    private static final Logger logger = Logger.getLogger(CoffeeVan.class.getName());
 
     public CoffeeVan(double maxWeight, double maxPrice) {
         this.maxWeight = maxWeight;
@@ -17,7 +21,7 @@ class CoffeeVan {
                 && calculateTotalPrice() + coffee.getPrice() <= maxPrice) {
             coffeeList.add(coffee);
         } else {
-            System.out.println("Неможливо додати " + coffee.getName() + " до фургона.");
+            logger.warning("Неможливо додати " + coffee.getName() + " до фургона.");
         }
     }
 
@@ -46,13 +50,14 @@ class CoffeeVan {
     }
 
     public List<Coffee> findCoffeeByQuality(double minQuality, double maxQuality) {
-        List<Coffee> result = new ArrayList<>();
-        for (Coffee coffee : coffeeList) {
-            double quality = coffee.getPrice() / (coffee.getWeight() / 1000);
-            if (quality >= minQuality && quality <= maxQuality) {
-                result.add(coffee);
-            }
-        }
+        coffeeList.sort(Comparator.comparingDouble(coffee -> coffee.getPrice() / (coffee.getWeight() / 1000)));
+        List<Coffee> result = coffeeList.stream()
+                .filter(coffee -> {
+                    double quality = coffee.getPrice() / (coffee.getWeight() / 1000);
+                    return quality >= minQuality && quality <= maxQuality;
+                })
+                .toList();
+
         return result;
     }
 }

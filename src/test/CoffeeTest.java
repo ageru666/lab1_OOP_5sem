@@ -1,6 +1,15 @@
+package src.test;
+
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import src.main.CoffeeVan;
+import src.main.Coffee;
+import src.main.CoffeeBeans;
+import src.main.GroundCoffee;
+import src.main.PacketCoffee;
+import src.main.InstantCoffee;
+
 
 public class CoffeeTest {
     private CoffeeVan coffeeVan;

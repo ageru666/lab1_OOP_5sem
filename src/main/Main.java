@@ -1,7 +1,7 @@
+package src.main;
 
 import java.util.List;
 import java.util.Scanner;
-
 
 public class Main {
     public static void main(String[] args) {
@@ -30,6 +30,7 @@ public class Main {
             System.out.print("Виберіть опцію: ");
 
             int choice = scanner.nextInt();
+
 
             switch (choice) {
                 case 1:
